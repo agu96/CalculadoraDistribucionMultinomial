@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculadora", "distribucionMultinomial\Calculadora.csproj", "{19EADC35-67F0-4265-900B-1CBC9B286B7B}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Distribucion Multinomial", "Distribucion Multinomial\Distribucion Multinomial.vdproj", "{C847F5CC-2B22-49FC-9904-EBC5BC9329FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19EADC35-67F0-4265-900B-1CBC9B286B7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19EADC35-67F0-4265-900B-1CBC9B286B7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19EADC35-67F0-4265-900B-1CBC9B286B7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19EADC35-67F0-4265-900B-1CBC9B286B7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C847F5CC-2B22-49FC-9904-EBC5BC9329FA}.Debug|Any CPU.ActiveCfg = Debug
+		{C847F5CC-2B22-49FC-9904-EBC5BC9329FA}.Release|Any CPU.ActiveCfg = Release
+		{C847F5CC-2B22-49FC-9904-EBC5BC9329FA}.Release|Any CPU.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
