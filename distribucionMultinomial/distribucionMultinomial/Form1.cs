@@ -22,26 +22,30 @@ namespace distribucionMultinomial
 
         private void TablaDatos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            int n=0;
-            int k;
-            float p;
-            float prob = 0;
+            ActNyP();
+        }
+
+        private void ActNyP()
+        {
+            long n = 0;
+            long k;
+            double p;
+            double prob = 0;
 
             foreach (DataGridViewRow row in this.TablaDatos.Rows)
             {
-                if(int.TryParse((string)row.Cells[1].Value,NumberStyles.Any,cultInfo, out k))
+                if (long.TryParse((string)row.Cells[1].Value, NumberStyles.Any, cultInfo, out k))
                 {
                     n += k;
                 }
-                if (float.TryParse((string)row.Cells[2].Value,NumberStyles.Any,cultInfo, out p))
+                if (double.TryParse((string)row.Cells[2].Value, NumberStyles.Any, cultInfo, out p))
                 {
                     prob += p;
                 }
 
-                this.N.Text = n.ToString("G10",cultInfo);
+                this.N.Text = n.ToString("G10", cultInfo);
                 this.SumP.Text = prob.ToString("G10", cultInfo);
             }
-
         }
 
         private void TablaDatos_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -77,15 +81,15 @@ namespace distribucionMultinomial
         {
             string valor = (string)e.FormattedValue;
 
-            int x;
-            if (!int.TryParse(valor,NumberStyles.Any,cultInfo, out x))
+            long x;
+            if (!long.TryParse(valor,NumberStyles.Any,cultInfo, out x))
             {
-                this.TablaDatos.Rows[e.RowIndex].ErrorText= "K no es valido. Ingrese solo numeros naturales, por ejemplo: 1 - 56 - 987";
+                this.TablaDatos.Rows[e.RowIndex].ErrorText= "K no es válido. Ingrese un número naturales, por ejemplo: 1 - 56 - 987";
                 e.Cancel = true;
             }
             else if(x < 0)
             {
-                this.TablaDatos.Rows[e.RowIndex].ErrorText = "K no es valido. P no puede ser negativo";
+                this.TablaDatos.Rows[e.RowIndex].ErrorText = "K no es válido. K no puede ser negativo";
                 e.Cancel = true;
             }
             else
@@ -101,7 +105,7 @@ namespace distribucionMultinomial
         {
             string valor = (string)e.FormattedValue;
 
-            float x;
+            double x;
 
             if (valor.Contains("/"))
             {
@@ -111,16 +115,16 @@ namespace distribucionMultinomial
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    this.TablaDatos.Rows[e.RowIndex].ErrorText = "P no es valido. Utilice ',' para decimales, '/' para fracciones, 'e' o 'E' para exponente. ej: 213,12  8/12 25e-2";
+                    this.TablaDatos.Rows[e.RowIndex].ErrorText = "P no es válido. Utilice '.' para decimales, '/' para fracciones, 'e' o 'E' para exponente. ej: 213,12  8/12 25e-2";
                     e.Cancel = true;
                     return;
                 }
             }
             else
             {
-                if (!float.TryParse(valor,NumberStyles.Any,cultInfo, out x))
+                if (!double.TryParse(valor,NumberStyles.Any,cultInfo, out x))
                 {
-                    this.TablaDatos.Rows[e.RowIndex].ErrorText = "P no es valido. Utilice ',' para decimales, '/' para fracciones, 'e' o 'E' para exponente. ej: 213,12  8/12 25e-2";
+                    this.TablaDatos.Rows[e.RowIndex].ErrorText = "P no es válido. Utilice '.' para decimales, '/' para fracciones, 'e' o 'E' para exponente. ej: 0.12  8/12 25e-2";
                     e.Cancel = true;
                     return;
                 }
@@ -129,7 +133,7 @@ namespace distribucionMultinomial
 
             if (x>1 || x < 0)
             {
-                this.TablaDatos.Rows[e.RowIndex].ErrorText = "P no es valido. P debe ser un valor entre 0 y 1";
+                this.TablaDatos.Rows[e.RowIndex].ErrorText = "P no es válido. P debe ser un valor entre 0 y 1";
                 e.Cancel = true;
             }
             else
@@ -151,21 +155,21 @@ namespace distribucionMultinomial
                 return;
             }
 
-            int n;
-            int.TryParse(this.N.Text,NumberStyles.Any,cultInfo, out n);
+            long n;
+            long.TryParse(this.N.Text,NumberStyles.Any,cultInfo, out n);
 
             BigDecimal res;
             res = BigDecimal.Parse(Mate.factorial(n).ToString());
             
             long k;
-            float p;
+            double p;
             foreach(DataGridViewRow row in this.TablaDatos.Rows)
             {
                 if (row.IsNewRow)
                     continue;
 
-                long.TryParse((string)row.Cells[1].Value, out k);
-                float.TryParse((string)row.Cells[2].Value, out p);
+                long.TryParse((string)row.Cells[1].Value, NumberStyles.Any, cultInfo, out k);
+                double.TryParse((string)row.Cells[2].Value, NumberStyles.Any, cultInfo, out p);
 
 
 
@@ -173,11 +177,6 @@ namespace distribucionMultinomial
                 res=res.Multiply(Math.Pow(p, k));
 
             }
-
-            CultureInfo ci = new CultureInfo("es-AR");
-            ci.NumberFormat.NumberDecimalDigits = 5;
-
-            //this.Resultado.Text = res.ToDouble().ToString("e8");
             
             this.Resultado.Text = res.ToDouble().ToString("G10",cultInfo);
 
@@ -185,37 +184,36 @@ namespace distribucionMultinomial
 
         private bool validarModelo()
         {
-            float prob = 0;
-            float p;
+            double prob = 0;
+            double p;
 
             foreach (DataGridViewRow row in this.TablaDatos.Rows)
             {
                 if (row.IsNewRow)
                     continue;
 
-                float.TryParse((string)row.Cells[2].Value, out p);
+                double.TryParse((string)row.Cells[2].Value, NumberStyles.Any, cultInfo, out p);
 
                 prob += p;
 
             }
 
-            return prob == 1;
+            return prob == 1D;
 
         }
 
 
         private void TablaDatos_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
-            //e.Row.Cells[0].Value = (e.Row.Index+1).ToString();
             e.Row.Cells[1].Value = "0";
-            e.Row.Cells[2].Value = "0,0";
+            e.Row.Cells[2].Value = "0.0";
         }
 
 
 
         private bool ConfirmarCierre()
         {
-            DialogResult r = MessageBox.Show("Esta seguro que desea salir?", "Confirmar Cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult r = MessageBox.Show("¿Está seguro que desea salir?", "Confirmar Cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             return r == DialogResult.Yes;
         }
         
@@ -227,6 +225,11 @@ namespace distribucionMultinomial
             {
                 this.Dispose();
             }
+        }
+
+        private void TablaDatos_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            ActNyP();
         }
     }
 }

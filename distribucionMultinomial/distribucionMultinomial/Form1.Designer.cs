@@ -74,6 +74,7 @@
             this.TablaDatos.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.TablaDatos_CellValidating);
             this.TablaDatos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaDatos_CellValueChanged);
             this.TablaDatos.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.TablaDatos_DefaultValuesNeeded);
+            this.TablaDatos.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.TablaDatos_UserDeletedRow);
             // 
             // N
             // 
@@ -150,7 +151,7 @@
             // 
             this.Categoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Categoria.DataPropertyName = "Categoria";
-            this.Categoria.FillWeight = 175F;
+            this.Categoria.FillWeight = 165F;
             this.Categoria.HeaderText = "Categoria";
             this.Categoria.Name = "Categoria";
             // 

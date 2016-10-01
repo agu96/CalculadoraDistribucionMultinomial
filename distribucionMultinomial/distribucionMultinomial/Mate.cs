@@ -26,21 +26,21 @@ namespace distribucionMultinomial
 
 
 
-        public static float FractionToDecimal(String input)
+        public static double FractionToDecimal(String input)
         {
             String[] fraction = input.Split(new[] { "/" }, StringSplitOptions.RemoveEmptyEntries);
             if (fraction.Length != 2)
             {
                 throw new ArgumentOutOfRangeException();
             }
-            Int32 numerator, denominator;
-            if (Int32.TryParse(fraction[0], out numerator) && Int32.TryParse(fraction[1], out denominator))
+            long numerator, denominator;
+            if (long.TryParse(fraction[0], out numerator) && long.TryParse(fraction[1], out denominator))
             {
                 if (denominator == 0)
                 {
                     throw new InvalidOperationException("Divide by 0 occurred");
                 }
-                return (float)numerator / denominator;
+                return (double)numerator / denominator;
             }
             throw new ArgumentException();
         }

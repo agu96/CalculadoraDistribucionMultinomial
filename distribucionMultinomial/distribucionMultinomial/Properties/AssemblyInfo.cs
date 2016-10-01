@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Calculadora para distribución multinomial")]
 [assembly: AssemblyDescription("Programa de calculo de probabilidades para disribución multinomial")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Agustin Caire")]
+[assembly: AssemblyCompany("Agustín Caire")]
 [assembly: AssemblyProduct("Calculadora para distribución multinomial")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
