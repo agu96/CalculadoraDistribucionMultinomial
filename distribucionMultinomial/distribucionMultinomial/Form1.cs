@@ -198,7 +198,8 @@ namespace distribucionMultinomial
 
             }
 
-            return prob == 1D;
+
+            return Math.Abs(prob-1) <= 9*Math.Pow(10,-10);
 
         }
 
